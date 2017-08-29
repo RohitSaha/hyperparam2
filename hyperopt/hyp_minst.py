@@ -62,6 +62,8 @@ def evaluate_model(prs):
 
         acc = sess.run(accuracy, feed_dict={x: mnist.validation.images, y: mnist.validation.labels})
 
+    print float(acc)
+
     return {
         'loss': float(acc),
         'status': STATUS_OK,
