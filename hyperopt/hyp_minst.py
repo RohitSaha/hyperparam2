@@ -72,7 +72,7 @@ def evaluate_model(prs):
 
 trials = Trials()
 space = (hp.quniform('nh1',10,784,1),hp.quniform('nh2',10,784,1),hp.uniform('llr',math.log(1e-8),math.log(1)),hp.quniform('eps',4.5,20.499999,1))
-best = fmin(evaluate_model, space=space, max_evals=70, trials = trials) #best = fmin(evaluate_model, space=space, algo=tpe.suggest, max_evals=70, trials = trials)
+best = fmin(evaluate_model, space=space, algo=hyperopt.rand.suggest, max_evals=70, trials = trials) #best = fmin(evaluate_model, space=space, algo=tpe.suggest, max_evals=70, trials = trials)
 
 pickle.dump(trials, open("myfile_rand.p", "wb"))
 pickle.dump(best, open("best_rand.p", "wb"))
