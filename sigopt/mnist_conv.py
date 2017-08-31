@@ -12,16 +12,6 @@ experiment = conn.experiments().create(
                 'min': 10,
                 'max': 784,
             },
-        },
-        #{
-        #     'name': 'activation_1',
-        #     'type': 'categorical',
-        #     'categorical_values': [
-        #         "relu",
-        #         "sigmoid",
-        #         "tanh",
-        #     ]
-        # },
         {
             'name': 'num_hidden_2',
             'type': 'int',
@@ -30,24 +20,6 @@ experiment = conn.experiments().create(
                 'max': 784,
             },
         },
-        # {
-        #     'name': 'activation_2',
-        #     'type': 'categorical',
-        #     'categorical_values': [
-        #         "relu",
-        #         "sigmoid",
-        #         "tanh",
-        #     ]
-        # },
-        # {
-        #     'name': 'optimizer',
-        #     'type': 'categorical',
-        #     'categorical_values': [
-        #         "adam",
-        #         "rmsprop",
-        #         "gradient_descent",
-        #     ]
-        # },
         {
             'name': 'log_learning_rate',
             'type': 'double',
@@ -78,18 +50,6 @@ mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 x = tf.placeholder("float", [None, 784])
 y = tf.placeholder("float", [None, 10])
-
-# activation_functions = {
-#     'relu': tf.nn.relu,
-#     'sigmoid': tf.sigmoid,
-#     'tanh': tf.tanh,
-# }
-
-# optimizers = {
-#     'gradient_descent': tf.train.GradientDescentOptimizer,
-#     'rmsprop': tf.train.RMSPropOptimizer,
-#     'adam': tf.train.AdamOptimizer,
-# }
 
 def create_model(assignments, sess):
     weights = {
