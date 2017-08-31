@@ -1,22 +1,16 @@
 {
     "language"        : "PYTHON",
-    "main-file"       : "mnist_script.py",
+    "main-file"       : "mod_acc.py",
     "experiment-name" : "simple-mnist",
     "likelihood"      : "gaussian",
     "resources": {
-        "maximum-iterations" :  50,
+        "maximum-iterations" :  70,
         "max-run-time": "NA"
     },
     "space" : [
         {   "name" : "X",
-            "type" : "continuous",
-            "domain": "(-3,3)",
-            "dimensionality": "1"
-        },
-        {
-            "name" : "Y",
-            "type" : "continuous",
-            "domain": "(-2,2)",
+            "type" : "discrete",
+            "domain": "(10,784)",
             "dimensionality": "1"
         }
     ],
