@@ -1,34 +1,27 @@
 import GPyOpt
 import numpy as np
 
-x_init = np.array([[1,2,50],
-                   [2,3,25],
-                   [-1.5,2.5,100]
-                   [-7,4,150]])
+# Function that takes in data and makes a suggested next parameter combo
+def next_hyps(x_dat,y_dat,vars_dom):
+       my_prob = GPyOpt.methods.BayesianOptimization(f = None, X = x_dat, Y = y_dat, domain = vars_dom)
+       return my_prob.suggested_sample
 
+#### Example use:
+# Input parameter combos
+x_init = np.array([[1,2,-2],
+                   [2,3,-1],
+                   [-1,5,-4],
+                   [-5,6,9]])
+# Output of model evaluated at inputs
 y_init = np.array([[5],
-                  [6]])
+                   [6],
+                   [-2],
+                   [-1]])
+# Details about the domain of variables. It seems like continuos variables
+# should be listed first for some reason
+bds = [{'name': 'var_1', 'type': 'continuous', 'domain': (-10,10)},
+       {'name': 'var_2', 'type': 'continuous', 'domain': (-10,10)},
+       {'name': 'var_3', 'type': 'discrete', 'domain': tuple(range(-10,11))}]
 
-def eval_func(x):
-    return x[:,0]**2 + x[:,1]**2
-
-bds = [{'name': 'var_1', 'type': 'continuous', 'domain': (-2,10)},
-       {'name': 'var_2', 'type': 'continuous', 'domain': (-2,10)}]
-
-#my_prob = GPyOpt.methods.BayesianOptimization(f = eval_func, X = x_init, Y = y_init, domain = bds, report_file = 'history.txt')
-my_prob = GPyOpt.methods.BayesianOptimization(f = None, X = x_init, Y = y_init, domain = bds, report_file = 'history.txt')
-#my_prob.run_optimization(1)
-#my_prob.plot_acquisition()
-#my_prob.suggested_sample
-
-####Psuedocode
-#Load tested hyperparameters (x_init) and results (y_init) into method
-my_prob = GPyOpt.methods.BayesianOptimization(f = None, X = x_init, Y = y_init, domain = bds, report_file = 'history.txt')
-
-#Get next suggested hyperparameter combo with suggested_sample method
-x_init = np.vstack([x_init, my_prob.suggested_sample])
-
-#Evaluate model at these hyperparameters and update y_init
-y_init = np.vstack([y_init, eval_model(my_prob.suggested_sample)])
-
-#Iterate
+# Display output
+print next_hyps(x_init,y_init,bds)
