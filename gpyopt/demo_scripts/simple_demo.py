@@ -1,8 +1,10 @@
 import GPyOpt
 import numpy as np
 
-x_init = np.array([[1,2],
-                  [2,3]])
+x_init = np.array([[1,2,50],
+                   [2,3,25],
+                   [-1.5,2.5,100]
+                   [-7,4,150]])
 
 y_init = np.array([[5],
                   [6]])
