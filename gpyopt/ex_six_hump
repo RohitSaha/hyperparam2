@@ -1,8 +1,0 @@
-import GPyOpt
-import GPy
-import numpy as np
-func = GPyOpt.objective_examples.experiments2d.sixhumpcamel()
-space =[{'name': 'var_1', 'type': 'continuous', 'domain': (-1,1)},
-        {'name': 'var_2', 'type': 'continuous', 'domain': (-1.5,1.5)}]
-        constrains = [{'name': 'constr_1', 'constrain': '-x[:,1] -.5 + abs(x[:,0]) - np.sqrt(1-x[:,0]**2)'},
-                      {'name': 'constr_2', 'constrain': 'x[:,1] +.5 - abs(x[:,0]) - np.sqrt(1-x[:,0]**2)'}        
