@@ -3,7 +3,7 @@ import numpy as np
 
 # Function that takes in data and makes a suggested next parameter combo
 def next_hyps(x_dat,y_dat,vars_dom):
-       my_prob = GPyOpt.methods.BayesianOptimization(f = None, X = x_dat, Y = y_dat, domain = vars_dom)
+       my_prob = GPyOpt.methods.BayesianOptimization(f = None, X = x_dat, Y = y_dat, domain = vars_dom, evaluator_type = 'local_penalization', batch_size = 2, num_cores = 2)
        return my_prob.suggested_sample
 
 #### Example use:
