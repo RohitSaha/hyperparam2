@@ -1,3 +1,6 @@
+Small examples for how to run GPyOpt without
+passing in function argument.
+
 In order to run these, you need:
 - numpy
 - gpy
