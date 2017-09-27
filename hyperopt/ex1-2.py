@@ -9,5 +9,7 @@ best = fmin(objective,
     space=hp.uniform('x', -10, 10),
     algo=tpe.suggest,
     max_evals=100)
-aafsef as asdf 
+
+import ipdp;ipdp.set_trace()
+
 print best
